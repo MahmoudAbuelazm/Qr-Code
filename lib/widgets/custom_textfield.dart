@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomTextField extends StatefulWidget {
@@ -21,6 +22,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType:
+          !widget.passowrd ? TextInputType.number : TextInputType.text,
+      inputFormatters: [
+        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+      ],
       obscureText: widget.passowrd ? !showpassword : false,
       decoration: InputDecoration(
         border: const OutlineInputBorder(
