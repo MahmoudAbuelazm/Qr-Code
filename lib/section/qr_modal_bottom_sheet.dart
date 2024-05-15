@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../widgets/custom_elevated_button.dart';
-import 'qr_saved_results.dart';
 
 class QrModalBottomSheet extends StatelessWidget {
   const QrModalBottomSheet({
@@ -86,10 +85,15 @@ class QrModalBottomSheet extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(
-                    Icons.photo_library,
-                    color: Colors.black.withOpacity(.55),
-                    size: 20,
+                  IconButton(
+                    onPressed: () {
+                      _pickImageFromCamera();
+                    },
+                    icon: Icon(
+                      Icons.photo_library,
+                      color: Colors.black.withOpacity(.55),
+                      size: 20,
+                    ),
                   ),
                   const SizedBox(width: 10),
                   Image.asset(
@@ -109,7 +113,7 @@ class QrModalBottomSheet extends StatelessWidget {
               ),
               CustomElevatedButton(
                 onPressed: () {
-                  ImagePicker().pickImage(source: ImageSource.camera);
+                  _pickImageFromGallery();
                   // showModalBottomSheet(
                   //     context: context,
                   //     isScrollControlled: true,
@@ -123,5 +127,19 @@ class QrModalBottomSheet extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future _pickImageFromGallery() async {
+    final selectedimage =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (selectedimage == null) return;
+    return selectedimage;
+  }
+
+  Future _pickImageFromCamera() async {
+    final selectedimage =
+        await ImagePicker().pickImage(source: ImageSource.camera);
+    if (selectedimage == null) return;
+    return selectedimage;
   }
 }

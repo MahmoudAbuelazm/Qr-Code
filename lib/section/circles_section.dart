@@ -22,7 +22,7 @@ class CirclesSection extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: height * 0.15),
+            SizedBox(height: height * 0.1),
             Center(
               child: Text(
                 'Login',

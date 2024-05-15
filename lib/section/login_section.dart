@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../screen/qr_scan_screen.dart';
 import '../widgets/custom_elevated_button.dart';
 import '../widgets/custom_textfield.dart';
-import 'qr_modal_bottom_sheet.dart';
 
 class LoginSection extends StatelessWidget {
   LoginSection({super.key});
@@ -12,7 +12,6 @@ class LoginSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -48,14 +47,15 @@ class LoginSection extends StatelessWidget {
             SizedBox(height: height * 0.02),
             CustomElevatedButton(
               onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  showModalBottomSheet(
-                      context: context,
-                      isScrollControlled: true,
-                      builder: (context) {
-                        return QrModalBottomSheet(height: height, width: width);
-                      });
-                }
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const QRCodeScanner();
+                }));
+                // showModalBottomSheet(
+                //     context: context,
+                //     isScrollControlled: true,
+                //     builder: (context) {
+                //       return QrModalBottomSheet(height: height, width: width);
+                //     });
               },
               text: 'Login',
             ),
