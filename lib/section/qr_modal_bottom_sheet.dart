@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../widgets/custom_elevated_button.dart';
 import 'qr_saved_results.dart';
@@ -108,11 +109,12 @@ class QrModalBottomSheet extends StatelessWidget {
               ),
               CustomElevatedButton(
                 onPressed: () {
-                  showModalBottomSheet(
-                      context: context,
-                      isScrollControlled: true,
-                      builder: (context) =>
-                          QrSavedResults(height: height, width: width));
+                  ImagePicker().pickImage(source: ImageSource.camera);
+                  // showModalBottomSheet(
+                  //     context: context,
+                  //     isScrollControlled: true,
+                  //     builder: (context) =>
+                  //         QrSavedResults(height: height, width: width));
                 },
                 text: 'Place Camera Code',
               ),
