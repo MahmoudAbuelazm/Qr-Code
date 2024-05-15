@@ -65,32 +65,38 @@ class QrSavedResults extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: height * 0.04),
+              SizedBox(height: height * 0.02),
               SizedBox(
-                height: height * 0.5,
+                height: height * 0.45,
                 child: ListView.builder(
                   itemCount: 4,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Card(
-                        color: const Color(0xffF4F4F4),
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              'images/Group 15.png',
-                              width: 41,
+                      child: SizedBox(
+                        height: height * 0.1,
+                        child: Card(
+                          color: const Color(0xffF4F4F4),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  'images/Group 15.png',
+                                  width: 41,
+                                ),
+                                SizedBox(width: width * 0.02),
+                                Text(
+                                  "7E0918FF",
+                                  style: GoogleFonts.inter(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ],
                             ),
-                            SizedBox(width: width * 0.02),
-                            Text(
-                              "7E0918FF",
-                              style: GoogleFonts.inter(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       ),
                     );
