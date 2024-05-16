@@ -15,7 +15,7 @@ class LoginScreen extends StatelessWidget {
         children: [
           const CirclesSection(),
           SizedBox(height: height * 0.15),
-          LoginSection()
+          const LoginSection()
         ],
       ),
     );

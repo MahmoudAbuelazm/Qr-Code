@@ -7,10 +7,12 @@ class CustomTextField extends StatefulWidget {
     super.key,
     required this.hintText,
     required this.passowrd,
+    required this.controller,
   });
 
   final String hintText;
   final bool passowrd;
+  final TextEditingController controller;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -22,11 +24,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.controller,
       keyboardType:
           !widget.passowrd ? TextInputType.number : TextInputType.text,
-      inputFormatters: [
-        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-      ],
+      inputFormatters: !widget.passowrd
+          ? [
+              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+            ]
+          : null,
       obscureText: widget.passowrd ? !showpassword : false,
       decoration: InputDecoration(
         border: const OutlineInputBorder(
