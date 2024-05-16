@@ -110,12 +110,10 @@ class QrSavedResults extends StatelessWidget {
                           password: userbox.getAt(0)!.password,
                           savedQrCodes: userbox.getAt(0)!.savedQrCodes
                             ..add(qrCode!)));
-                  var getuser = Hive.box<UserModel>('user');
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (context) {
                     return const ShowResultScreen();
                   }));
-                  print(getuser.getAt(0)!.savedQrCodes);
                 },
                 text: 'Send',
               ),

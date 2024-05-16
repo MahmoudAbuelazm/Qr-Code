@@ -45,7 +45,15 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
         create: (context) => UserCubit(),
         child: BlocConsumer<UserCubit, UserState>(
           listener: (context, state) {
-            if (state is ScanFailure) {
+            if (state is ScanSuccess && state.loading) {
+              showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  builder: (context) => QrSavedResults(
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,
+                      qrCode: result?.code ?? imgQr));
+            } else if (state is ScanFailure) {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(state.message),
               ));
@@ -54,14 +62,6 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
           builder: (context, state) {
             if (state is ScanSuccess && state.loading) {
               return const Center(child: CircularProgressIndicator());
-            } else if (state is ScanSuccess && state.loading == false) {
-              showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  builder: (context) => QrSavedResults(
-                      height: MediaQuery.of(context).size.height,
-                      width: MediaQuery.of(context).size.width,
-                      qrCode: result?.code ?? imgQr));
             }
             return Scaffold(
               appBar: AppBar(title: const Text("QR Code")),
@@ -131,8 +131,8 @@ class _QRCodeScannerState extends State<QRCodeScanner> {
                       },
                       child: const Icon(
                         Icons.image_outlined,
-                        color: Colors.white,
                         size: 30,
+                        color: Colors.white,
                       ),
                     ),
                   ),
